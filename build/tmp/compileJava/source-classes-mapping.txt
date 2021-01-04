@@ -1,9 +1,9 @@
-com/talentica/arangodb/idprovider/UUID.java
- com.talentica.arangodb.idprovider.UUID
-com/talentica/arangodb/idprovider/IdProvider.java
- com.talentica.arangodb.idprovider.IdProvider
 com/talentica/arangodb/repository/ArangoTransactionalRepository.java
  com.talentica.arangodb.repository.ArangoTransactionalRepository
+com/talentica/arangodb/idprovider/IdProvider.java
+ com.talentica.arangodb.idprovider.IdProvider
+com/talentica/arangodb/idprovider/UUID.java
+ com.talentica.arangodb.idprovider.UUID
 com/talentica/arangodb/TransactionSaveOperations.java
  com.talentica.arangodb.TransactionSaveOperations
 com/talentica/arangodb/CollectionCacheValue.java

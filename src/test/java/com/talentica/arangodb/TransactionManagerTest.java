@@ -8,7 +8,6 @@ import com.talentica.arangodb.repository.BookRepository;
 import com.talentica.arangodb.service.BookLoaderService;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.util.AssertionErrors;
 
 import java.io.File;
@@ -26,9 +25,9 @@ public class TransactionManagerTest {
         var bookService = appContext.getBean(BookLoaderService.class);
         bookService.save(book);
         var bookRepo = appContext.getBean(BookRepository.class);
-        book = bookRepo.findByUuid(book.getUuid());
+       // book = bookRepo.findByUuid(book.getUuid());
         book.setDownloads(1000);
-        bookService.save(book);
+        bookService.saveBookBypassingTransaction(book);
 
     }
 
@@ -42,7 +41,7 @@ public class TransactionManagerTest {
         String[] beanNames = appContext.getBeanDefinitionNames();
         var bookService = appContext.getBean(BookLoaderService.class);
         bookService.saveBookBypassingTransaction(book);
-        book.set_rev("_bmNZa4C---");
+        book.setVersion("_bmNZa4C---");
         book.setDownloads(1000);
         try {
             bookService.save(book);
@@ -72,7 +71,7 @@ public class TransactionManagerTest {
         bookService.save(book);
         book = bookRepo.findByUuid(book.getUuid());
         book.setDownloads(1);
-        book.set_rev("_bmNZa4C---");
+        book.setVersion("_bmNZa4C---");
         try {
             bookService.saveBothBooks(book,book2);
             AssertionErrors.assertFalse("This should not be reached", true);

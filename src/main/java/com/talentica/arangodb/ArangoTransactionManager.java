@@ -2,6 +2,8 @@ package com.talentica.arangodb;
 
 import com.arangodb.ArangoCollection;
 import com.arangodb.ArangoDatabase;
+import com.arangodb.entity.Entity;
+import com.arangodb.internal.util.ArangoSerializationFactory;
 import com.arangodb.model.*;
 import com.arangodb.springframework.annotation.*;
 import com.arangodb.springframework.config.ArangoConfiguration;
@@ -11,30 +13,36 @@ import com.arangodb.springframework.core.convert.ArangoConverter;
 import com.arangodb.springframework.core.convert.ArangoEntityWriter;
 import com.arangodb.springframework.core.mapping.ArangoPersistentEntity;
 import com.arangodb.springframework.core.mapping.ArangoPersistentProperty;
+import com.arangodb.springframework.core.template.ArangoTemplate;
 import com.arangodb.springframework.core.template.DefaultCollectionOperations;
 import com.arangodb.springframework.core.util.ArangoExceptionTranslator;
+import com.arangodb.util.ArangoSerialization;
 import com.arangodb.velocypack.VPackSlice;
+import com.arangodb.velocystream.Response;
 import com.talentica.arangodb.annotation.CustomId;
 import com.talentica.arangodb.idprovider.IdProvider;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.apache.commons.text.StringEscapeUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mapping.context.MappingContext;
 import org.springframework.transaction.*;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ArangoTransactionManager implements PlatformTransactionManager {
     private static final String REPSERT_QUERY =
-            "db._query(\"LET doc = %s UPSERT { _key: doc._key } " +
+            "result[%d]=db._query(\"LET doc = %s UPSERT { _key: doc._key } " +
                     "INSERT doc._key == null ? UNSET(doc, \\\"_key\\\") : doc " +
                     "REPLACE doc " +
                     "IN %s " +
                     "OPTIONS { ignoreRevs: false } " +
-                    "RETURN NEW\");\n";
+                    "RETURN NEW\")['_documents'][0];\n";
 
     private final Map<Long, TransactionSaveOperations> transactionSaveOperationsMap= new ConcurrentHashMap<>();
     private final Map<CollectionCacheKey, CollectionCacheValue> collectionCache = new ConcurrentHashMap<>();
@@ -53,7 +61,15 @@ public class ArangoTransactionManager implements PlatformTransactionManager {
     private ArangoEntityWriter writer;
 
     @Autowired
+    private ArangoConverter converter;
+
+    @Autowired
     private ArangoConfiguration arangoConfiguration;
+
+
+
+    public ArangoTransactionManager() {
+    }
 
     @Data
     @AllArgsConstructor
@@ -146,27 +162,37 @@ public class ArangoTransactionManager implements PlatformTransactionManager {
         //write code to commit to the database
         var thread = Thread.currentThread().getId();
         var saveOperations = transactionSaveOperationsMap.get(thread);
-        StringBuilder actionSb = new StringBuilder("function(){\n " +
-                "db = require(\"@arangodb\").db; \n");
+        StringBuilder actionSb = new StringBuilder("function(){\n "
+                +"var result = [];"
+                +"db = require(\"@arangodb\").db; \n");
         var tOpts = new TransactionOptions();
         List<String> writeCollections = new LinkedList<>();
         if(saveOperations!=null){
-            for(Object entity: saveOperations.getDocuments()){
+            var docs = saveOperations.getDocuments();
+            for(var i=0;i<docs.size();i++){
+                var entity = docs.get(i);
                 var collection = _collection(entity.getClass());
                 var vpacSlice = writer.write(entity);
                 var escapedData = StringEscapeUtils.escapeJson(vpacSlice.toString());
-                var query = String.format(REPSERT_QUERY, escapedData, collection.name());
+                var query = String.format(REPSERT_QUERY,i, escapedData, collection.name());
                 actionSb.append(query);
                 writeCollections.add(collection.name());
 
             }
         }
-        actionSb.append("return \"Success\"; \n }");
+        actionSb.append("return result; \n }");
         tOpts.writeCollections(writeCollections.toArray(new String[]{}));
         tOpts.waitForSync(true);
         String action = actionSb.toString();
         var result = arangoOperations.driver().db(arangoConfiguration.database())
-                .transaction(action, String.class, tOpts);
+                .transaction(action, VPackSlice.class, tOpts);
+        var resList = converter.read(List.class, result);
+        var docs = saveOperations.getDocuments();
+        for(var i=0;i<docs.size();i++) {
+            var entity = docs.get(i);
+            var returnedEntity = resList.get(i);
+            BeanUtils.copyProperties(returnedEntity, entity);
+        }
         transactionSaveOperationsMap.remove(Thread.currentThread().getId());
     }
 
@@ -174,7 +200,37 @@ public class ArangoTransactionManager implements PlatformTransactionManager {
     public void rollback(TransactionStatus status) throws TransactionException {
         transactionSaveOperationsMap.remove(Thread.currentThread().getId());
     }
+    private boolean isInternal(final Type type) {
+        if (type instanceof ParameterizedType) {
+            ParameterizedType pType = ((ParameterizedType) type);
+            Type rawType = pType.getRawType();
 
+            if (rawType instanceof Class<?> && (
+                    Map.class.isAssignableFrom((Class<?>) rawType) || Iterable.class.isAssignableFrom((Class<?>) rawType)
+            )) {
+                for (Type arg : pType.getActualTypeArguments()) {
+                    if (!isInternal(arg)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+
+        return type instanceof Class<?> && Entity.class.isAssignableFrom((Class<?>) type);
+    }
+
+//    protected <T> T createResult(final Type type, final VPackSlice value) {
+//        if (type != Void.class && value != null) {
+//            if (isInternal(type)) {
+//                return (T) util.get(ArangoSerializationFactory.Serializer.INTERNAL).deserialize(value, type);
+//            } else {
+//                return (T) util.get(ArangoSerializationFactory.Serializer.CUSTOM).deserialize(value, type);
+//            }
+//        } else {
+//            return null;
+//        }
+//    }
     private ArangoCollection _collection(final Class<?> entityClass) {
         final ArangoPersistentEntity<?> persistentEntity = mappingContext.getRequiredPersistentEntity(entityClass);
         final String name = persistentEntity.getCollection();

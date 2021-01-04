@@ -39,6 +39,6 @@ public class Book {
     private long downloads;
 
     @Rev
-    private String _rev;
+    private String version;
 
 }

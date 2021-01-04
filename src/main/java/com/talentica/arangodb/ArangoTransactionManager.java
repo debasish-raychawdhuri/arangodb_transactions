@@ -51,23 +51,18 @@ public class ArangoTransactionManager implements PlatformTransactionManager {
 
     private ArangoExceptionTranslator exceptionTranslator =new ArangoExceptionTranslator();
 
-    @Autowired
     private MappingContext<? extends ArangoPersistentEntity<?>, ArangoPersistentProperty> mappingContext;
 
-    @Autowired
     private ArangoOperations arangoOperations;
 
-    @Autowired
     private ArangoEntityWriter writer;
 
-    @Autowired
     private ArangoConverter converter;
 
-    @Autowired
     private ArangoConfiguration arangoConfiguration;
 
-    public ArangoTransactionManager(MappingContext<? extends ArangoPersistentEntity<?>, ArangoPersistentProperty> mappingContext, ArangoOperations arangoOperations, ArangoEntityWriter writer, ArangoConverter converter, ArangoConfiguration arangoConfiguration) {
-        this.mappingContext = mappingContext;
+    public ArangoTransactionManager( ArangoOperations arangoOperations, ArangoEntityWriter writer, ArangoConverter converter, ArangoConfiguration arangoConfiguration) {
+        this.mappingContext = converter.getMappingContext();
         this.arangoOperations = arangoOperations;
         this.writer = writer;
         this.converter = converter;

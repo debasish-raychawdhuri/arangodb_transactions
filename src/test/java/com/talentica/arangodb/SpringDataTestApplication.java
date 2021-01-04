@@ -21,12 +21,11 @@ public class SpringDataTestApplication {
 
     @Bean
     public PlatformTransactionManager getTransactionManager(
-            MappingContext<? extends ArangoPersistentEntity<?>, ArangoPersistentProperty> mappingContext,
             ArangoOperations arangoOperations,
             ArangoEntityWriter writer,
             ArangoConverter converter,
             ArangoConfiguration arangoConfiguration){
-        return new ArangoTransactionManager(mappingContext,arangoOperations,writer,converter,arangoConfiguration);
+        return new ArangoTransactionManager(arangoOperations,writer,converter,arangoConfiguration);
     }
 
 }

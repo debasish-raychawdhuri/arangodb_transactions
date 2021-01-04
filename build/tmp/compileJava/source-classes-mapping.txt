@@ -1,0 +1,19 @@
+com/talentica/arangodb/idprovider/UUID.java
+ com.talentica.arangodb.idprovider.UUID
+com/talentica/arangodb/idprovider/IdProvider.java
+ com.talentica.arangodb.idprovider.IdProvider
+com/talentica/arangodb/ArangoTransactionManager.java
+ com.talentica.arangodb.ArangoTransactionManager
+ com.talentica.arangodb.ArangoTransactionManager$FieldAndProvider
+com/talentica/arangodb/TransactionSaveOperations.java
+ com.talentica.arangodb.TransactionSaveOperations
+com/talentica/arangodb/CollectionCacheValue.java
+ com.talentica.arangodb.CollectionCacheValue
+com/talentica/arangodb/annotation/CustomId.java
+ com.talentica.arangodb.annotation.CustomId
+com/talentica/arangodb/CollectionCacheKey.java
+ com.talentica.arangodb.CollectionCacheKey
+com/talentica/arangodb/repository/ArangoTransactionalRepository.java
+ com.talentica.arangodb.repository.ArangoTransactionalRepository
+com/talentica/arangodb/repository/ArangoTransactionalRepositoryImpl.java
+ com.talentica.arangodb.repository.ArangoTransactionalRepositoryImpl

@@ -1,0 +1,22 @@
+com/talentica/arangodb/dataloader/DataParserException.java
+ com.talentica.arangodb.dataloader.DataParserException
+com/talentica/arangodb/SpringDataTestApplication.java
+ com.talentica.arangodb.SpringDataTestApplication
+com/talentica/arangodb/dataloader/BookDataParser.java
+ com.talentica.arangodb.dataloader.BookDataParser
+com/talentica/arangodb/dataloader/BookRdfParser.java
+ com.talentica.arangodb.dataloader.BookRdfParser
+ com.talentica.arangodb.dataloader.BookRdfParser$BookRdfIterable
+ com.talentica.arangodb.dataloader.BookRdfParser$BookRdfIterator
+com/talentica/arangodb/entity/Book.java
+ com.talentica.arangodb.entity.Book
+ com.talentica.arangodb.entity.Book$Creator
+ com.talentica.arangodb.entity.Book$Format
+com/talentica/arangodb/ArangoDBConfiguration.java
+ com.talentica.arangodb.ArangoDBConfiguration
+com/talentica/arangodb/service/BookLoaderService.java
+ com.talentica.arangodb.service.BookLoaderService
+com/talentica/arangodb/TransactionManagerTest.java
+ com.talentica.arangodb.TransactionManagerTest
+com/talentica/arangodb/repository/BookRepository.java
+ com.talentica.arangodb.repository.BookRepository

@@ -25,6 +25,8 @@ public class TransactionManagerTest {
         String[] beanNames = appContext.getBeanDefinitionNames();
         var bookService = appContext.getBean(BookLoaderService.class);
         bookService.save(book);
+        var bookRepo = appContext.getBean(BookRepository.class);
+        book = bookRepo.findByUuid(book.getUuid());
         book.setDownloads(1000);
         bookService.save(book);
 
@@ -69,16 +71,18 @@ public class TransactionManagerTest {
         var bookRepo = appContext.getBean(BookRepository.class);
         bookService.save(book);
         book = bookRepo.findByUuid(book.getUuid());
+        book.setDownloads(1);
         book.set_rev("_bmNZa4C---");
         try {
             bookService.saveBothBooks(book,book2);
             AssertionErrors.assertFalse("This should not be reached", true);
         }catch(ArangoDBException ex){
 
-        }catch(Exception ex){
-            AssertionErrors.assertFalse("This should not be reached", true);
         }
-
+        var book3 = bookRepo.findByUuid(book.getUuid());
+        var book4 = bookRepo.findByUuid(book2.getUuid());
+        AssertionErrors.assertNull("Book2 must not have been commited", book4);
+        AssertionErrors.assertFalse("Book1 must not have been updated", book3.getDownloads()==1);
     }
     @Test
     public void testTransactionSuccess() throws Exception{
@@ -96,6 +100,8 @@ public class TransactionManagerTest {
         var bookRepo = appContext.getBean(BookRepository.class);
         bookService.save(book);
         book = bookRepo.findByUuid(book.getUuid());
+
+        book.setDownloads(1);
         //book.set_rev("_bmNZa4C---");
         try {
             bookService.saveBothBooks(book,book2);
@@ -103,6 +109,9 @@ public class TransactionManagerTest {
         }catch(Exception ex){
             AssertionErrors.assertFalse("This should not be reached", true);
         }
-
+        var book3 = bookRepo.findByUuid(book.getUuid());
+        var book4 = bookRepo.findByUuid(book2.getUuid());
+        AssertionErrors.assertNotNull("Book2 must have been commited", book4);
+        AssertionErrors.assertTrue("Book1 must have been updated", book3.getDownloads()==1);
     }
 }

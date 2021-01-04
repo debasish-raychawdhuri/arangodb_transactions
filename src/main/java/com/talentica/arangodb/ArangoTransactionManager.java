@@ -129,7 +129,10 @@ public class ArangoTransactionManager implements PlatformTransactionManager {
             var provider = cusomIdMeta.getProvider();
             field.setAccessible(true);
             try {
-                field.set(entity, provider.newUniqueID(field.getType(), entity));
+                var value = field.get(entity);
+                if(value==null) {
+                    field.set(entity, provider.newUniqueID(field.getType(), entity));
+                }
             } catch (IllegalAccessException e) {
                 throw new IllegalStateException(e);
             }

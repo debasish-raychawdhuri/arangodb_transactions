@@ -196,6 +196,7 @@ public class ArangoTransactionManager implements PlatformTransactionManager {
         if (persistentEntity != null && !entities.contains(entityClass)) {
             value.addEntityClass(entityClass);
             ensureCollectionIndexes(collection(collection.name()), persistentEntity);
+            ensureCustomIDIndexes(collection(collection.name()), persistentEntity);
         }
         return collection;
     }
@@ -203,6 +204,10 @@ public class ArangoTransactionManager implements PlatformTransactionManager {
         return arangoOperations.collection(name);
     }
 
+    private static void ensureCustomIDIndexes(final CollectionOperations collection, final ArangoPersistentEntity<?> persistentEntity){
+        var props = persistentEntity.getPersistentProperties(CustomId.class);
+        props.forEach(index -> ensureUniquePersistentIndex(collection, index));
+    }
     private static void ensureCollectionIndexes(final CollectionOperations collection,
                                                 final ArangoPersistentEntity<?> persistentEntity) {
         persistentEntity.getHashIndexes().stream().forEach(index -> ensureHashIndex(collection, index));
@@ -251,6 +256,13 @@ public class ArangoTransactionManager implements PlatformTransactionManager {
                                               final ArangoPersistentProperty value) {
         final PersistentIndexOptions options = new PersistentIndexOptions();
         value.getPersistentIndexed().ifPresent(i -> options.unique(i.unique()).sparse(i.sparse()));
+        collection.ensurePersistentIndex(Collections.singleton(value.getFieldName()), options);
+    }
+    private static void ensureUniquePersistentIndex(final CollectionOperations collection,
+                                              final ArangoPersistentProperty value) {
+        final PersistentIndexOptions options = new PersistentIndexOptions();
+        options.unique(true);
+        options.sparse(false);
         collection.ensurePersistentIndex(Collections.singleton(value.getFieldName()), options);
     }
 

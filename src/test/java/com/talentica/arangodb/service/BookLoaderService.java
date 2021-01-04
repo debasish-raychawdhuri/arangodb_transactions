@@ -7,12 +7,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class BookLoaderService {
     @Autowired
     private BookRepository bookRepository;
     public void saveBookBypassingTransaction(Book book){
+        book.setUuid(UUID.randomUUID().toString());
         bookRepository.save(book);
     }
 

@@ -1,6 +1,9 @@
 package com.talentica.arangodb.entity;
 
 import com.arangodb.springframework.annotation.Document;
+import com.arangodb.springframework.annotation.HashIndex;
+import com.arangodb.springframework.annotation.PersistentIndex;
+import com.arangodb.springframework.annotation.Rev;
 import com.talentica.arangodb.annotation.CustomId;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -38,6 +41,7 @@ public class Book {
     private Creator[] creators;
     private long downloads;
 
+    @Rev
     private String _rev;
 
 }

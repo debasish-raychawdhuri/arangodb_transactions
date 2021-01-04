@@ -5,9 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.PlatformTransactionManager;
 
 public class ArangoTransactionalRepositoryImpl<T, ID> implements ArangoTransactionalRepository<T, ID> {
-    @Autowired
+
     private PlatformTransactionManager transactionManager;
 
+    public ArangoTransactionalRepositoryImpl(PlatformTransactionManager transactionManager) {
+        this.transactionManager = transactionManager;
+    }
 
     public <S extends T> S saveToTransaction(final S entity) {
         S result;

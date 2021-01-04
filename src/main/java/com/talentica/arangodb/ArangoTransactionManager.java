@@ -66,9 +66,12 @@ public class ArangoTransactionManager implements PlatformTransactionManager {
     @Autowired
     private ArangoConfiguration arangoConfiguration;
 
-
-
-    public ArangoTransactionManager() {
+    public ArangoTransactionManager(MappingContext<? extends ArangoPersistentEntity<?>, ArangoPersistentProperty> mappingContext, ArangoOperations arangoOperations, ArangoEntityWriter writer, ArangoConverter converter, ArangoConfiguration arangoConfiguration) {
+        this.mappingContext = mappingContext;
+        this.arangoOperations = arangoOperations;
+        this.writer = writer;
+        this.converter = converter;
+        this.arangoConfiguration = arangoConfiguration;
     }
 
     @Data
@@ -200,37 +203,7 @@ public class ArangoTransactionManager implements PlatformTransactionManager {
     public void rollback(TransactionStatus status) throws TransactionException {
         transactionSaveOperationsMap.remove(Thread.currentThread().getId());
     }
-    private boolean isInternal(final Type type) {
-        if (type instanceof ParameterizedType) {
-            ParameterizedType pType = ((ParameterizedType) type);
-            Type rawType = pType.getRawType();
 
-            if (rawType instanceof Class<?> && (
-                    Map.class.isAssignableFrom((Class<?>) rawType) || Iterable.class.isAssignableFrom((Class<?>) rawType)
-            )) {
-                for (Type arg : pType.getActualTypeArguments()) {
-                    if (!isInternal(arg)) {
-                        return false;
-                    }
-                }
-                return true;
-            }
-        }
-
-        return type instanceof Class<?> && Entity.class.isAssignableFrom((Class<?>) type);
-    }
-
-//    protected <T> T createResult(final Type type, final VPackSlice value) {
-//        if (type != Void.class && value != null) {
-//            if (isInternal(type)) {
-//                return (T) util.get(ArangoSerializationFactory.Serializer.INTERNAL).deserialize(value, type);
-//            } else {
-//                return (T) util.get(ArangoSerializationFactory.Serializer.CUSTOM).deserialize(value, type);
-//            }
-//        } else {
-//            return null;
-//        }
-//    }
     private ArangoCollection _collection(final Class<?> entityClass) {
         final ArangoPersistentEntity<?> persistentEntity = mappingContext.getRequiredPersistentEntity(entityClass);
         final String name = persistentEntity.getCollection();

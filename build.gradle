@@ -1,7 +1,8 @@
 plugins {
-    id 'org.springframework.boot' version '2.3.3.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
-    id 'java'
+//    id 'org.springframework.boot' version '2.3.3.RELEASE'
+//    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java-library'
+    id 'maven-publish'
 }
 
 group 'com.talentica'
@@ -9,12 +10,13 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = '1.11'
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
 dependencies {
     implementation 'org.apache.commons:commons-text:1.9'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation platform('org.springframework.boot:spring-boot-dependencies:2.3.3.RELEASE')
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }

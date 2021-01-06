@@ -1,0 +1,10 @@
+com/talentica/arangodb/repository/ArangoTransactionalRepository.class
+com/talentica/arangodb/annotation/CustomId.class
+com/talentica/arangodb/CollectionCacheKey.class
+com/talentica/arangodb/repository/ArangoTransactionalRepositoryImpl.class
+com/talentica/arangodb/ArangoTransactionManager$FieldAndProvider.class
+com/talentica/arangodb/CollectionCacheValue.class
+com/talentica/arangodb/idprovider/UUID.class
+com/talentica/arangodb/TransactionSaveOperations.class
+com/talentica/arangodb/idprovider/IdProvider.class
+com/talentica/arangodb/ArangoTransactionManager.class

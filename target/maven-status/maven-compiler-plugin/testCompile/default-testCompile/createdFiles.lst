@@ -1,0 +1,13 @@
+com/talentica/arangodb/dataloader/BookRdfParser$BookRdfIterable.class
+com/talentica/arangodb/dataloader/BookRdfParser.class
+com/talentica/arangodb/entity/Book$Format.class
+com/talentica/arangodb/dataloader/BookRdfParser$BookRdfIterator.class
+com/talentica/arangodb/dataloader/BookDataParser.class
+com/talentica/arangodb/TransactionManagerTest.class
+com/talentica/arangodb/entity/Book$Creator.class
+com/talentica/arangodb/SpringDataTestApplication.class
+com/talentica/arangodb/repository/BookRepository.class
+com/talentica/arangodb/ArangoDBConfiguration.class
+com/talentica/arangodb/dataloader/DataParserException.class
+com/talentica/arangodb/entity/Book.class
+com/talentica/arangodb/service/BookLoaderService.class

@@ -26,6 +26,7 @@ import lombok.Data;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mapping.context.MappingContext;
 import org.springframework.transaction.*;
 
@@ -34,7 +35,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-
+@ComponentScan(basePackages = "com.talentica.arangodb")
 public class ArangoTransactionManager implements PlatformTransactionManager {
     private static final String REPSERT_QUERY =
             "result[%d]=db._query(\"LET doc = %s UPSERT { _key: doc._key } " +

@@ -11,5 +11,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface CustomId {
-    public Class<? extends IdProvider> provider() default UUID.class;
+    public Class<? extends IdProvider> strategy() default UUID.class;
 }

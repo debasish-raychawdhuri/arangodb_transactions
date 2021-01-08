@@ -2,8 +2,6 @@ package com.talentica.arangodb;
 
 import com.arangodb.ArangoCollection;
 import com.arangodb.ArangoDatabase;
-import com.arangodb.entity.Entity;
-import com.arangodb.internal.util.ArangoSerializationFactory;
 import com.arangodb.model.*;
 import com.arangodb.springframework.annotation.*;
 import com.arangodb.springframework.config.ArangoConfiguration;
@@ -13,30 +11,26 @@ import com.arangodb.springframework.core.convert.ArangoConverter;
 import com.arangodb.springframework.core.convert.ArangoEntityWriter;
 import com.arangodb.springframework.core.mapping.ArangoPersistentEntity;
 import com.arangodb.springframework.core.mapping.ArangoPersistentProperty;
-import com.arangodb.springframework.core.template.ArangoTemplate;
-import com.arangodb.springframework.core.template.DefaultCollectionOperations;
 import com.arangodb.springframework.core.util.ArangoExceptionTranslator;
-import com.arangodb.util.ArangoSerialization;
 import com.arangodb.velocypack.VPackSlice;
-import com.arangodb.velocystream.Response;
 import com.talentica.arangodb.annotation.CustomId;
 import com.talentica.arangodb.idprovider.IdProvider;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mapping.context.MappingContext;
 import org.springframework.transaction.*;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 @ComponentScan(basePackages = "com.talentica.arangodb")
-public class ArangoTransactionManager implements PlatformTransactionManager {
+public class ArangoTransactionManager implements PlatformTransactionManager, ApplicationContextAware {
     private static final String REPSERT_QUERY =
             "result[%d]=db._query(\"LET doc = %s UPSERT { _key: doc._key } " +
                     "INSERT doc._key == null ? UNSET(doc, \\\"_key\\\") : doc " +
@@ -49,6 +43,7 @@ public class ArangoTransactionManager implements PlatformTransactionManager {
     private final Map<CollectionCacheKey, CollectionCacheValue> collectionCache = new ConcurrentHashMap<>();
     private final Map<Class,Field> customIdFieldMap = new ConcurrentHashMap<>();
     private final Map<Class,IdProvider> customIdFieldProviderMap = new ConcurrentHashMap<>();
+    private ApplicationContext applicationContext;
 
     private ArangoExceptionTranslator exceptionTranslator =new ArangoExceptionTranslator();
 
@@ -62,12 +57,19 @@ public class ArangoTransactionManager implements PlatformTransactionManager {
 
     private ArangoConfiguration arangoConfiguration;
 
-    public ArangoTransactionManager( ArangoOperations arangoOperations, ArangoEntityWriter writer, ArangoConverter converter, ArangoConfiguration arangoConfiguration) {
+    public ArangoTransactionManager() {
+
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+
+        this.arangoOperations = applicationContext.getBean(ArangoOperations.class);
+        this.writer = applicationContext.getBean(ArangoEntityWriter.class);
+        this.converter = applicationContext.getBean(ArangoConverter.class);
+        this.arangoConfiguration = applicationContext.getBean(ArangoConfiguration.class);
         this.mappingContext = converter.getMappingContext();
-        this.arangoOperations = arangoOperations;
-        this.writer = writer;
-        this.converter = converter;
-        this.arangoConfiguration = arangoConfiguration;
     }
 
     @Data
@@ -96,7 +98,7 @@ public class ArangoTransactionManager implements PlatformTransactionManager {
                     }
                     idField = f;
                     try {
-                        provider = annotation.provider().getConstructor(new Class[0]).newInstance();
+                        provider = annotation.strategy().getConstructor(new Class[0]).newInstance();
                     } catch (Exception e) {
                         throw new IllegalStateException(e);
                     }

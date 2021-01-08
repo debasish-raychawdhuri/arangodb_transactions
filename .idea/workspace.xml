@@ -7,35 +7,9 @@
     <list default="true" id="a9f51bc8-d27b-4866-80ce-dd8286bcda03" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/talentica/arangodb/ArangoTransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talentica/arangodb/ArangoTransactionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb/ArangoDBConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/ArangoDBConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb/SpringDataTestApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/SpringDataTestApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb/TransactionManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/TransactionManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb/dataloader/BookDataParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/dataloader/BookDataParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb/dataloader/BookRdfParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/dataloader/BookRdfParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb/dataloader/DataParserException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/dataloader/DataParserException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/entity/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb/repository/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/repository/BookRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb/service/BookLoaderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/service/BookLoaderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/talentica/arangodb/ArangoTransactionManager$FieldAndProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/talentica/arangodb/ArangoTransactionManager$FieldAndProvider.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/talentica/arangodb/ArangoTransactionManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/talentica/arangodb/ArangoTransactionManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/talentica/arangodb/TransactionSaveOperations.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/talentica/arangodb/TransactionSaveOperations.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.talentica.arangodb.TransactionManagerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.talentica.arangodb.TransactionManagerTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.talentica.arangodb.TransactionManagerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.talentica.arangodb.TransactionManagerTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/talentica/arangodb/ArangoDBConfiguration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/talentica/arangodb/SpringDataTestApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/talentica/arangodb/TransactionManagerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/talentica/arangodb/dataloader/BookDataParser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/talentica/arangodb/dataloader/BookRdfParser$BookRdfIterable.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/talentica/arangodb/dataloader/BookRdfParser$BookRdfIterator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/talentica/arangodb/dataloader/BookRdfParser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/talentica/arangodb/dataloader/DataParserException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/talentica/arangodb/entity/Book$Creator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/talentica/arangodb/entity/Book$Format.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/talentica/arangodb/entity/Book.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/talentica/arangodb/repository/BookRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/talentica/arangodb/service/BookLoaderService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/talentica/arangodb/annotation/CustomId.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talentica/arangodb/annotation/CustomId.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/SpringDataTestApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/SpringDataTestApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/arangodb-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/arangodb-1.0-SNAPSHOT.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +72,7 @@
       <recent name="com.talentica.arangodb" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TransactionManagerTest">
+  <component name="RunManager" selected="JUnit.TransactionManagerTest (1)">
     <configuration name="TransactionManagerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -162,26 +136,20 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="TransactionManagerTest.testTransactionSuccess" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;com.talentica.arangodb.TransactionManagerTest.testTransactionSuccess&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
+    <configuration name="TransactionManagerTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="arangodb" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.talentica.arangodb2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.talentica.arangodb2" />
+      <option name="MAIN_CLASS_NAME" value="com.talentica.arangodb2.TransactionManagerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="TransactionManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="arangodb" />
@@ -200,11 +168,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TransactionManagerTest (1)" />
         <item itemvalue="JUnit.TransactionManagerTest" />
         <item itemvalue="Gradle.TransactionManagerTest" />
         <item itemvalue="Gradle.TransactionManagerTest.testTransactionFailure" />
         <item itemvalue="Gradle.TransactionManagerTest.testOptimisticLockingSuccess" />
-        <item itemvalue="Gradle.TransactionManagerTest.testTransactionSuccess" />
       </list>
     </recent_temporary>
   </component>
@@ -234,7 +202,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/talentica/arangodb/ArangoTransactionManager.java</url>
-          <line>199</line>
+          <line>201</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

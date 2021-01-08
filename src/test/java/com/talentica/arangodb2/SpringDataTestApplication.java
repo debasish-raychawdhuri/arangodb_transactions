@@ -15,12 +15,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class SpringDataTestApplication {
 
     @Bean
-    public PlatformTransactionManager getTransactionManager(
-            ArangoOperations arangoOperations,
-            ArangoEntityWriter writer,
-            ArangoConverter converter,
-            ArangoConfiguration arangoConfiguration){
-        return new ArangoTransactionManager(arangoOperations,writer,converter,arangoConfiguration);
+    public PlatformTransactionManager getTransactionManager(){
+        return new ArangoTransactionManager();
     }
 
 }

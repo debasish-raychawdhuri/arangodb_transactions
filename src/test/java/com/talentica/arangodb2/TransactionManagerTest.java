@@ -4,7 +4,9 @@ package com.talentica.arangodb2;
 import com.arangodb.ArangoDBException;
 import com.arangodb.springframework.core.convert.ArangoEntityWriter;
 import com.talentica.arangodb2.dataloader.BookRdfParser;
+import com.talentica.arangodb2.entity.User;
 import com.talentica.arangodb2.repository.BookRepository;
+import com.talentica.arangodb2.repository.UserRepository;
 import com.talentica.arangodb2.service.BookLoaderService;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -112,5 +114,27 @@ public class TransactionManagerTest {
         var book4 = bookRepo.findByUuid(book2.getUuid());
         AssertionErrors.assertNotNull("Book2 must have been commited", book4);
         AssertionErrors.assertTrue("Book1 must have been updated", book3.getDownloads()==1);
+    }
+    @Test
+    public void testTransactionSuccessWithUser() throws Exception{
+        var appContext = new AnnotationConfigApplicationContext(SpringDataTestApplication.class);
+        ArangoEntityWriter entityWriter = appContext.getBean(ArangoEntityWriter.class);
+        AssertionErrors.assertTrue("could not create entity writer",entityWriter!=null);
+
+        var stream = TransactionManagerTest.class.getResourceAsStream("/pg25519.rdf");
+        var stream2 = TransactionManagerTest.class.getResourceAsStream("/pg15.rdf");
+        BookRdfParser parser = new BookRdfParser(new File(""));
+        var book = parser.parseBook(stream);
+        var user = new User();
+        user.setName("Tom");
+
+        var bookService = appContext.getBean(BookLoaderService.class);
+        var bookRepo = appContext.getBean(BookRepository.class);
+        var userRepo = appContext.getBean(UserRepository.class);
+        bookService.saveBookWithUser(book,user);
+        user = userRepo.findByUuid(user.getUuid());
+        AssertionErrors.assertNotNull("Must not be null", user.getFavoriteBook());
+        AssertionErrors.assertEquals("Must be equal", user.getFavoriteBook(), book.getUuid());
+
     }
 }

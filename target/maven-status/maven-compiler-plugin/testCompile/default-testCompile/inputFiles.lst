@@ -1,5 +1,7 @@
 /media/debashishc/T7/work/arangodb/src/test/java/com/talentica/arangodb2/dataloader/BookRdfParser.java
 /media/debashishc/T7/work/arangodb/src/test/java/com/talentica/arangodb2/service/BookLoaderService.java
+/media/debashishc/T7/work/arangodb/src/test/java/com/talentica/arangodb2/repository/UserRepository.java
+/media/debashishc/T7/work/arangodb/src/test/java/com/talentica/arangodb2/entity/User.java
 /media/debashishc/T7/work/arangodb/src/test/java/com/talentica/arangodb2/dataloader/DataParserException.java
 /media/debashishc/T7/work/arangodb/src/test/java/com/talentica/arangodb2/dataloader/BookDataParser.java
 /media/debashishc/T7/work/arangodb/src/test/java/com/talentica/arangodb2/TransactionManagerTest.java

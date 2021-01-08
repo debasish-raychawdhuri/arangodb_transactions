@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9f51bc8-d27b-4866-80ce-dd8286bcda03" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talentica/arangodb/ArangoTransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talentica/arangodb/ArangoTransactionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/talentica/arangodb/annotation/CustomId.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talentica/arangodb/annotation/CustomId.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/SpringDataTestApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/SpringDataTestApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/TransactionManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/TransactionManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/service/BookLoaderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/service/BookLoaderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/arangodb-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/arangodb-1.0-SNAPSHOT.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,6 +27,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -50,10 +53,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="JavaMethodFindUsagesOptions.isImplementingMethods" value="true" />
+    <property name="LombokPluginIS_ANNOTATION_PROCESSING_CHECK_Enabled" value="true" />
+    <property name="LombokPluginIS_LOMBOK_VERSION_CHECK_Enabled" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -72,34 +78,13 @@
       <recent name="com.talentica.arangodb" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TransactionManagerTest (1)">
+  <component name="RunManager" selected="JUnit.TransactionManagerTest.testTransactionSuccessWithUser">
     <configuration name="TransactionManagerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" value="--tests &quot;com.talentica.arangodb.TransactionManagerTest&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="TransactionManagerTest.testOptimisticLockingSuccess" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;com.talentica.arangodb.TransactionManagerTest.testOptimisticLockingSuccess&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -166,13 +151,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TransactionManagerTest.testTransactionSuccessWithUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="arangodb" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.talentica.arangodb2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.talentica.arangodb2" />
+      <option name="MAIN_CLASS_NAME" value="com.talentica.arangodb2.TransactionManagerTest" />
+      <option name="METHOD_NAME" value="testTransactionSuccessWithUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TransactionManagerTest.testTransactionSuccessWithUser" />
         <item itemvalue="JUnit.TransactionManagerTest (1)" />
         <item itemvalue="JUnit.TransactionManagerTest" />
         <item itemvalue="Gradle.TransactionManagerTest" />
         <item itemvalue="Gradle.TransactionManagerTest.testTransactionFailure" />
-        <item itemvalue="Gradle.TransactionManagerTest.testOptimisticLockingSuccess" />
       </list>
     </recent_temporary>
   </component>
@@ -192,12 +193,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/TransactionManagerTest.java</url>
-          <line>73</line>
+          <line>75</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/TransactionManagerTest.java</url>
-          <line>58</line>
+          <line>60</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -207,22 +208,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/TransactionManagerTest.java</url>
-          <line>69</line>
+          <line>71</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/TransactionManagerTest.java</url>
-          <line>51</line>
+          <line>53</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/TransactionManagerTest.java</url>
-          <line>80</line>
+          <line>82</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/service/BookLoaderService.java</url>
-          <line>18</line>
+          <line>22</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -232,15 +233,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/TransactionManagerTest.java</url>
-          <line>41</line>
+          <line>43</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/TransactionManagerTest.java</url>
-          <line>26</line>
+          <line>28</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

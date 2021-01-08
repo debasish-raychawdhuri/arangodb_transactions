@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9f51bc8-d27b-4866-80ce-dd8286bcda03" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/entity/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/talentica/arangodb/ArangoTransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/talentica/arangodb/ArangoTransactionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/TransactionManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/TransactionManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/service/BookLoaderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/service/BookLoaderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/talentica/arangodb2/entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/arangodb-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/arangodb-1.0-SNAPSHOT.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -203,7 +201,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/talentica/arangodb/ArangoTransactionManager.java</url>
-          <line>201</line>
+          <line>205</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

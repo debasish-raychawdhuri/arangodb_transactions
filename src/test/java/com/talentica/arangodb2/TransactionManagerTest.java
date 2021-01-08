@@ -132,7 +132,11 @@ public class TransactionManagerTest {
         var bookRepo = appContext.getBean(BookRepository.class);
         var userRepo = appContext.getBean(UserRepository.class);
         bookService.saveBookWithUser(book,user);
-        user = userRepo.findByUuid(user.getUuid());
+        //user = userRepo.findByUuid(user.getUuid());
+        AssertionErrors.assertNotNull("Must not be null", user.getId());
+        AssertionErrors.assertNotNull("Must not be null", book.getId());
+        AssertionErrors.assertNotNull("Must not be null", user.getVersion());
+        AssertionErrors.assertNotNull("Must not be null", book.getVersion());
         AssertionErrors.assertNotNull("Must not be null", user.getFavoriteBook());
         AssertionErrors.assertEquals("Must be equal", user.getFavoriteBook(), book.getUuid());
 

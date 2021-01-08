@@ -70,6 +70,10 @@ public class ArangoTransactionManager implements PlatformTransactionManager, App
         this.converter = applicationContext.getBean(ArangoConverter.class);
         this.arangoConfiguration = applicationContext.getBean(ArangoConfiguration.class);
         this.mappingContext = converter.getMappingContext();
+        if(arangoOperations==null || writer==null ||
+                converter==null || arangoConfiguration==null || mappingContext==null){
+            throw new IllegalStateException("Missing required dependencies, do you have spring-data-arangodb enabled?");
+        }
     }
 
     @Data
